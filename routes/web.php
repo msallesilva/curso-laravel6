@@ -1,5 +1,6 @@
 <?php
 
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,64 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Rota padrão para acesso ao Middleware através de autenticação
+
+Route::get('/login', function(){
+    return 'Login';
+})->name('login');
+
+// Rota com grupo de autenticação de Middleware com funções de agrupamento como Auth e admin
+/* Route::middleware([])->group(function(){
+
+    Route::prefix('admin')->group(function(){
+        Route::namespace('Admin')->group(function(){
+            Route::name('admin.')->group(function(){
+                Route::get('/dashboard', 'TesteController@teste')->name('dashboard');
+                Route::get('/financeiro', 'TesteController@teste')->name('financeiro');
+                Route::get('/produtos', 'TesteController@teste')->name('produtos');
+                Route::get('/', function(){
+                    return redirect()->route('admin.dashboard');
+                })->name('home');
+            });
+
+        });
+
+         Route::get('/dashboard', function(){
+            return 'Home Admin';
+         });
+        
+         Route::get('/financeiro', function(){
+             return 'Financeiro Admin';
+         });
+        
+         Route::get('/produtos', function(){
+             return 'Produtos Admin';
+        });
+
+         Route::get('/', function(){
+         return 'Admin';
+        });
+        
+    });
+
+});
+*/
+
+
+Route::group([
+    'middleware' => [],
+    'prefix' => 'admin',
+    'namespace' => 'Admin',
+    'name' => '.admin'
+],function(){
+                    Route::get('/dashboard', 'TesteController@teste')->name('dashboard');
+                Route::get('/financeiro', 'TesteController@teste')->name('financeiro');
+                Route::get('/produtos', 'TesteController@teste')->name('produtos');
+                Route::get('/', function(){
+                    return redirect()->route('admin.dashboard');
+                })->name('home');
+});
+
 Route::get('redirect3',function(){
     return redirect()->route('url.name');
 });
