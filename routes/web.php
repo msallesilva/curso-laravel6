@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 // Rota padrão para acesso ao Middleware através de autenticação
 
+Route::get('products/{id}','ProductController@show')->name('products.show');
+Route::get('products','ProductController@index')->name('products.index');
+
 Route::get('/login', function(){
     return 'Login';
 })->name('login');
