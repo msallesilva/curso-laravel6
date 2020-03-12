@@ -12,6 +12,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+Route::redirect('/redirect1','/redirect2');
+
+// Route::get('redirect1',function(){
+//     return redirect('/redirect2');
+// });
+
+Route::get('redirect2',function(){
+    return 'Redirect 02';
+});
+
 Route::get('/produtos/{idProdutos?}',function($idProduto = ''){
     return "Produto(s)" . $idProduto;
 });
@@ -36,14 +48,16 @@ Route::post('/register', function () {
     return;
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/contato', function(){
     return view('contato');
 });
 
 Route::get('/empresa', function(){
     return view();
+});
+
+Route::view('/view','welcome');
+
+Route::get('/', function () {
+    return view('welcome');
 });
