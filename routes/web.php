@@ -12,7 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('redirect3',function(){
+    return redirect()->route('url.name');
+});
 
+Route::get('/nurl', function(){
+    return 'Hey hey hey hey';
+})->name('url.name');
 
 Route::redirect('/redirect1','/redirect2');
 
