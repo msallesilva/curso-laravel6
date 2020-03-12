@@ -63,7 +63,7 @@ Route::group([
     'namespace' => 'Admin',
     'name' => '.admin'
 ],function(){
-                    Route::get('/dashboard', 'TesteController@teste')->name('dashboard');
+                Route::get('/dashboard', 'TesteController@teste')->name('dashboard');
                 Route::get('/financeiro', 'TesteController@teste')->name('financeiro');
                 Route::get('/produtos', 'TesteController@teste')->name('produtos');
                 Route::get('/', function(){
